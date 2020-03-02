@@ -1,11 +1,11 @@
 #
 # This is free software, lisence use MIT.
-# 
+#
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
 # Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
-# 
+#
 # <https://github.com/KFERMercer/OpenWrt-CI>
-# 
+#
 
 name: OpenWrt-CI
 
@@ -14,9 +14,7 @@ on:
     - cron: 0 20 * * *
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -53,8 +51,11 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      - name: Generate configuration file
-        run: make defconfig
+      # - name: Generate configuration file
+      #   run: make defconfig
+
+      - name: Copy configuration file
+        run: cp ./myConfig/n1.config .config
 
       - name: Make download
         run: |
